@@ -1,11 +1,10 @@
-import User from "./components/User.tsx"
+import Button from "./components/Button.tsx";
 
 const App =()=>{
+
     return(
         <div>
-          <User>
-              Hello World!
-          </User>
+           <Button clickFirst={"Click me"}  clicked={"Clicked"} disabled={false}/>
         </div>
     )
 }
