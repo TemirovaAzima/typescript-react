@@ -1,9 +1,11 @@
-import User from "./components/User.tsx";
+import User from "./components/User.tsx"
 
 const App =()=>{
     return(
         <div>
-          <User name={"Azima"} age={17}/>
+          <User>
+              Hello World!
+          </User>
         </div>
     )
 }
