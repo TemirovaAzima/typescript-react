@@ -1,10 +1,25 @@
-import Button from "./components/Button.tsx";
+import UserInfo from "./components/UserInfo.tsx";
+import AdminInfo from "./components/AdminInfo.tsx";
+import { Info, AdminInfoList} from './types.ts'
 
-const App =()=>{
+const App = () => {
+    const user: Info ={
+        id: 1,
+        name: "John Doe",
+        email: "johndoe@example.com",
+    };
 
-    return(
+    const admin : AdminInfoList ={
+        id: 2,
+        name: "Jane Smith",
+        email: "jane@example.com",
+        role: "admin",
+        lastLogin: new Date(),
+    };
+    return (
         <div>
-           <Button clickFirst={"Click me"}  clicked={"Clicked"} disabled={false}/>
+            <UserInfo user={user}/>
+            <AdminInfo admin={admin}/>
         </div>
     )
 }
