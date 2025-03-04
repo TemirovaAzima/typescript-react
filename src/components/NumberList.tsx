@@ -1,13 +1,13 @@
-//
-// interface NumberListProp {
-//     readonly name : string;
-//     readonly age : number;
-// }
-// interface PersonProp{
-//     person: NumberListProp
-// }
 
-const NumberList = ({person} : {person: {readonly name: string; readonly age: number}}) => {
+type NumberListProp = {
+    readonly name: string;
+    age? : number;
+}
+const NumberList = () => {
+    const person: NumberListProp={name: "Azima", age: 17}
+    // delete person.name  gives an error
+    delete person.age
+    console.log(person)
     return (
         <div>
             {person.name}
