@@ -1,15 +1,14 @@
-import Bird from "./components/Bird.tsx";
-const App = () => {
-    const peocock ={
-        species: "Peacock",
-        canFly: false,
-    }
 
+import Bird from "./components/Bird.tsx";
+
+
+const App = () => {
     return (
         <div>
-            <Bird peocock={peocock} />
+           <Bird
+               species={"Dog"}
+               canFly={false}/>
         </div>
     )
 }
 export default App
-

@@ -1,18 +1,15 @@
 interface Animal {
-    readonly species: string,
+    species: string;
 }
-interface Bird extends Animal{
+interface Bird {
     canFly: boolean;
 }
-interface BirdProp{
-    peocock: Bird
-}
-
-const Bird = ({peocock}:BirdProp) => {
+type Pet = Animal & Bird;
+const Bird = ({species, canFly} : Pet) => {
     return (
         <div>
-            <h1>{peocock.species}</h1>
-            <h1>{peocock.canFly}</h1>
+          Species: {species}
+          <p> Can fly: {canFly ? "Yes" : "No"}</p>
         </div>
     )
 }
