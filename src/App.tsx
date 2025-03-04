@@ -1,26 +1,20 @@
-import UserInfo from "./components/UserInfo.tsx";
-import AdminInfo from "./components/AdminInfo.tsx";
-import { Info, AdminInfoList} from './types.ts'
+import Employee from "./components/Employee.tsx";
+
 
 const App = () => {
-    const user: Info ={
-        id: 1,
-        name: "John Doe",
-        email: "johndoe@example.com",
-    };
 
-    const admin : AdminInfoList ={
-        id: 2,
-        name: "Jane Smith",
-        email: "jane@example.com",
-        role: "admin",
-        lastLogin: new Date(),
-    };
+    const employee={
+        name: "Azima",
+        age: 30,
+        email: "azima@example.com",
+        phone: "123-456-789",
+        company: "Tech Corp",
+    }
     return (
         <div>
-            <UserInfo user={user}/>
-            <AdminInfo admin={admin}/>
+            <Employee employee={employee} />
         </div>
     )
 }
 export default App
+
