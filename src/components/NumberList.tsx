@@ -1,5 +1,5 @@
 
-const Array = ({numbers, firstNumber}: {numbers: readonly number[]; firstNumber: number}) => {
+const NumberList = ({numbers, firstNumber} : {numbers: readonly number[] ; firstNumber: number}) => {
     return (
         <div>
             {numbers.map((number) => (
@@ -9,4 +9,4 @@ const Array = ({numbers, firstNumber}: {numbers: readonly number[]; firstNumber:
         </div>
     )
 }
-export default Array
+export default NumberList
