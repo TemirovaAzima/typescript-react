@@ -1,18 +1,17 @@
-import Employee from "./components/Employee.tsx";
+import Person from "./components/Person.tsx";
 
 
 const App = () => {
+     const person ={
+         name: "Azima",
+         greet(){
+             return "hello kitty"
+         }
+     }
 
-    const employee={
-        name: "Azima",
-        age: 30,
-        email: "azima@example.com",
-        phone: "123-456-789",
-        company: "Tech Corp",
-    }
     return (
         <div>
-            <Employee employee={employee} />
+            <Person person={person} />
         </div>
     )
 }
