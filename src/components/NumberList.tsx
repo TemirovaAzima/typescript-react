@@ -1,11 +1,17 @@
+//
+// interface NumberListProp {
+//     readonly name : string;
+//     readonly age : number;
+// }
+// interface PersonProp{
+//     person: NumberListProp
+// }
 
-const NumberList = ({numbers, firstNumber} : {numbers: readonly number[] ; firstNumber: number}) => {
+const NumberList = ({person} : {person: {readonly name: string; readonly age: number}}) => {
     return (
         <div>
-            {numbers.map((number) => (
-                <h1>{number}</h1>
-            ))}
-            {firstNumber}
+            {person.name}
+            {person.age}
         </div>
     )
 }
