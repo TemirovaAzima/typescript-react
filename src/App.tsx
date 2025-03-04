@@ -1,17 +1,13 @@
-import Person from "./components/Person.tsx";
-
-
+import Bird from "./components/Bird.tsx";
 const App = () => {
-     const person ={
-         name: "Azima",
-         greet(){
-             return "hello kitty"
-         }
-     }
+    const peocock ={
+        species: "Peacock",
+        canFly: false,
+    }
 
     return (
         <div>
-            <Person person={person} />
+            <Bird peocock={peocock} />
         </div>
     )
 }
