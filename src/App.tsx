@@ -1,10 +1,10 @@
-import Counter from "./components/Counter.tsx";
+import UserProfile from './components/UserProfile.tsx'
 
 const App =()=>{
 
     return (
         <div>
-           <Counter/>
+           <UserProfile/>
         </div>
     )
 }
