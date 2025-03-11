@@ -1,10 +1,9 @@
-import NumberList from "./components/NumberList.tsx";
+import Person from './components/Person.tsx'
+const App =()=>{
 
-
-const App = () => {
     return (
         <div>
-            <NumberList/>
+          <Person/>
         </div>
     )
 }
