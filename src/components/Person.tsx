@@ -1,30 +1,18 @@
-import {useState} from 'react'
+import {useState} from "react";
+
 
 const Person = () => {
-    // const [items, setItems] = useState<string[]>(["Apple","Banana", "Cherry"])
-    // const changeItem =()=>setItems([...items, "Mango"])
-    // const deleteItem =()=>setItems(items.filter((item)=>item=== "Mango" ? item !=="Mango": item))
-    // const updateInfoItem =()=>setItems(items.map((item)=> item === "Mango" ? "Mango only fav" : item ))
-    const [users, setUsers] = useState<{name: string; age:number}[]>([
-        {name: "Alice", age:25},
-        {name: "Bob", age: 30},
-    ]);
-    const changeUserName = ()=>setUsers(users.map((user)=> user.name==="Alice"? {...user, name:"Alicebay"} : user))
+    const [user, setUser] = useState<{name: string; age: number} | null>(null);
+    // const [data, setData] = useState<{name: string; age: number} | undefined>(undefined);
+    const updateUser =()=>setUser({name: "azima", age: 17})
     return (
         <div>
-            {users.map((user: {name: string; age: number})=>(
-                <li key={Math.random()}>{user.name} {user.age}</li>
-            ))}
-            <button onClick={changeUserName}>change Alice name </button>
-            {/*{items.map((item: string)=>(*/}
-            {/*    <li key={Math.random()}>{item}</li>*/}
-            {/*))}*/}
-            {/*<button onClick={changeItem}>Add Mango</button>*/}
-            {/*<button onClick={deleteItem}>Delete Mango</button>*/}
-            {/*<button onClick={updateInfoItem}>Update Mango</button>*/}
-
-
+            {user === null|| undefined ? "" : (
+                <p>{user.name} {user.age}</p>
+            ) }
+            <button onClick={() => updateUser()}>Update Person</button>
         </div>
     )
 }
 export default Person
+
