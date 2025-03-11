@@ -1,20 +1,14 @@
 import {useState} from "react";
-// type addFriend =()=>void
-interface addFriend {
-    (): void
-}
 
 const Person = () => {
-    const [friends, setFriends] = useState<string[]>(["Lisa", "Jennie"]);
-    // const addFriend =(): void=>setFriends([...friends,"Rosie"])
-    const addFriend : addFriend =()=>setFriends([...friends,"Rosie"])
+   const [friends, setFriends] = useState<(string | number)[]>(["Lisa", "Jennie","Dex",24])
     return (
         <div>
-            {friends.map((friend : string)=>(
-                <li key={Math.random()}>{friend}</li>
+            {friends.map((friend) => (
+                <li key={Math.random()}>{typeof friend === "number" ? `Age: ${friend}` : `Name: ${friend}`}</li>
             ))}
-            <button onClick={addFriend}>add Friend</button>
         </div>
     )
 }
 export default Person
+
