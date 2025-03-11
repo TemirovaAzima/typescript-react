@@ -1,29 +1,17 @@
-import {useEffect, useState} from "react";
-type User ={
-    id: number;
-    name: string;
-    email: string;
-}
+import {useState} from "react";
+
 
 const Person = () => {
-    const[users, setUsers] = useState<User[]|null>(null);
-    useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then((response)=>response.json())
-            .then((data : User[]) => setUsers(data))
-            .catch((error)=> console.error("Error fetching users:",error));
-    }, [])
+    const [friends, setFriends] = useState<string[]>(["Lisa", "Jennie"]);
+    // const addFriend =(): void=>setFriends([...friends,"Rosie"])
+    const addFriend : ()=>void =()=>setFriends([...friends,"Rosie"])
     return (
         <div>
-            <h1>User List</h1>
-            {users === null ? ( // Check if data is still null
-                <p>Loading ...</p>
-            ):(
-                <ul>{users.map((user: User)=>(
-                    <li key={user.id}>{user.name} - {user.email}</li>
-                ))}</ul>
-            )}
+            {friends.map((friend : string)=>(
+                <li key={Math.random()}>{friend}</li>
+            ))}
+            <button onClick={addFriend}>add Friend</button>
         </div>
-    );
+    )
 }
 export default Person
