@@ -1,10 +1,11 @@
-import Weather from "./components/Weather.tsx";
+
+import UserStatus from "./components/UserStatus.tsx";
 
 
 const App = () => {
     return (
         <div>
-            <Weather temperature={-45}/>
+            <UserStatus loggedIn={true} isAdmin={true}/>
         </div>
     )
 }
