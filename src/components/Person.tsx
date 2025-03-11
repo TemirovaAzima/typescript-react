@@ -1,24 +1,22 @@
-type Person = {
-    name: string;
-}
 
 const Person = () => {
-    const mixedArray: (string | number | Person)[]= ["Bob",2,{name: "Marv"}];
-    mixedArray.forEach((item) => {
-        if(typeof item === "string"){
-            console.log("String:" , item.toUpperCase())
-        } else if (typeof item === "number"){
-            console.log("Number:", item*2)
-        } else {
-            console.log("Object Name:" , item.name)
-        }
-    })
+    const mixedArray: (string | number | {name : string})[] = ["Bob", 2, {name: "Marv"}]
     return (
         <div>
-
+            <h1>Mixed List</h1>
+            <ul>
+                {mixedArray.map((item: string | number | {name: string})=>(
+                    <li key={Math.random()}>
+                        {typeof item === "string" && `String : ${item}`}
+                        {typeof item === "number" && `Number : ${item}`}
+                        {typeof item === "object" && `Object Name : ${item.name}`}
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
 export default Person
+
 
 
