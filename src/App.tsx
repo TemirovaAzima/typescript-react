@@ -1,10 +1,10 @@
-import Form from './components/Form';
+import FocusInput from "./components/FocusInput.tsx";
 
 const App =()=>{
 
     return (
         <div>
-          <Form/>
+            <FocusInput/>
         </div>
     )
 }
