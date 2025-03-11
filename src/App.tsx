@@ -1,11 +1,11 @@
+import Greeting from "./components/Greeting.tsx";
+import {JSX} from "react";
 
-import UserStatus from "./components/UserStatus.tsx";
 
-
-const App = () => {
+const App = (): JSX.Element => {
     return (
         <div>
-            <UserStatus loggedIn={true} isAdmin={true}/>
+          <Greeting timeOfDay={"morning"}/>
         </div>
     )
 }
