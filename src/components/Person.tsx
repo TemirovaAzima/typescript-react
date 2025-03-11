@@ -1,14 +1,24 @@
-import {useState} from "react";
+type Person = {
+    name: string;
+}
 
 const Person = () => {
-   const [friends, setFriends] = useState<(string | number)[]>(["Lisa", "Jennie","Dex",24])
+    const mixedArray: (string | number | Person)[]= ["Bob",2,{name: "Marv"}];
+    mixedArray.forEach((item) => {
+        if(typeof item === "string"){
+            console.log("String:" , item.toUpperCase())
+        } else if (typeof item === "number"){
+            console.log("Number:", item*2)
+        } else {
+            console.log("Object Name:" , item.name)
+        }
+    })
     return (
         <div>
-            {friends.map((friend) => (
-                <li key={Math.random()}>{typeof friend === "number" ? `Age: ${friend}` : `Name: ${friend}`}</li>
-            ))}
+
         </div>
     )
 }
 export default Person
+
 
