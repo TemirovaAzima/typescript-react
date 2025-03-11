@@ -1,10 +1,10 @@
-import FocusInput from "./components/FocusInput.tsx";
+import EventHandling from './components/EventHandling.tsx'
 
 const App =()=>{
 
     return (
         <div>
-            <FocusInput/>
+          <EventHandling/>
         </div>
     )
 }
