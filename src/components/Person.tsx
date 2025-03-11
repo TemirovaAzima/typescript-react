@@ -1,18 +1,29 @@
-import {useState} from "react";
-
+import {useEffect, useState} from "react";
+type User ={
+    id: number;
+    name: string;
+    email: string;
+}
 
 const Person = () => {
-    const [user, setUser] = useState<{name: string; age: number} | null>(null);
-    // const [data, setData] = useState<{name: string; age: number} | undefined>(undefined);
-    const updateUser =()=>setUser({name: "azima", age: 17})
+    const[users, setUsers] = useState<User[]|null>(null);
+    useEffect(()=>{
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then((response)=>response.json())
+            .then((data : User[]) => setUsers(data))
+            .catch((error)=> console.error("Error fetching users:",error));
+    }, [])
     return (
         <div>
-            {user === null|| undefined ? "" : (
-                <p>{user.name} {user.age}</p>
-            ) }
-            <button onClick={() => updateUser()}>Update Person</button>
+            <h1>User List</h1>
+            {users === null ? ( // Check if data is still null
+                <p>Loading ...</p>
+            ):(
+                <ul>{users.map((user)=>(
+                    <li key={user.id}>{user.name} - {user.email}</li>
+                ))}</ul>
+            )}
         </div>
-    )
+    );
 }
 export default Person
-
