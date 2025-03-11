@@ -19,7 +19,7 @@ const Person = () => {
             {users === null ? ( // Check if data is still null
                 <p>Loading ...</p>
             ):(
-                <ul>{users.map((user)=>(
+                <ul>{users.map((user: User)=>(
                     <li key={user.id}>{user.name} - {user.email}</li>
                 ))}</ul>
             )}
