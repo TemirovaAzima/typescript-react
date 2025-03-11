@@ -1,9 +1,10 @@
-import Person from './components/Person.tsx'
+import Counter from "./components/Counter.tsx";
+
 const App =()=>{
 
     return (
         <div>
-          <Person/>
+           <Counter/>
         </div>
     )
 }
