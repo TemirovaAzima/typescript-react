@@ -1,22 +1,24 @@
+import {useState} from "react";
 
+type User = {
+    name : string;
+}
 const Person = () => {
-    const mixedArray: (string | number | {name : string})[] = ["Bob", 2, {name: "Marv"}]
+    const [user, setUser] = useState<User>({name: "Sungjoo"});
+    // const changeName = (): void=>{
+    //     setUser({...user, name: "Ironheart"} as User);
+    // }
+    // const changeName = (): void=>{
+    //     setUser((prev : {name: string})=>( {...prev, name : prev.name === "Sungjoo" ?  "Evelyn Ha" : "Sungjoo"}))
+    // }
+    const changeName = (): void =>{
+        setUser((prev: User)=> ({...prev, name : prev.name === "Sungjoo" ? "Evelyn Ha" : "Sungjoo"}))
+    }
     return (
         <div>
-            <h1>Mixed List</h1>
-            <ul>
-                {mixedArray.map((item: string | number | {name: string})=>(
-                    <li key={Math.random()}>
-                        {typeof item === "string" && `String : ${item}`}
-                        {typeof item === "number" && `Number : ${item}`}
-                        {typeof item === "object" && `Object Name : ${item.name}`}
-                    </li>
-                ))}
-            </ul>
+            <h1>Name: {user.name}</h1>
+            <button onClick={changeName}>Change Name</button>
         </div>
     )
 }
 export default Person
-
-
-
