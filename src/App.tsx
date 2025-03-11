@@ -1,10 +1,26 @@
-import Person from "./components/Person.tsx";
+import React, {JSX} from "react";
+type PasswordProp={
+    isValid : boolean,
+}
+const ValidPassword=() :JSX.Element=><h1>Right Password</h1>
+const InValidPassword =(): JSX.Element=> <h1>Wrong Password</h1>
+// const Password: React.FC<PasswordProp>=({isValid})=>{
+//     if(isValid){
+//         return ValidPassword()
+//     }else{
+//         return InValidPassword()
+//     }
+// }
 
+// using ternary operator
+const Password: React.FC<PasswordProp>=({isValid})=>{
+   return  isValid ? <ValidPassword/> : <InValidPassword/>;
+}
 
 const App = () => {
     return (
         <div>
-            <Person name={"Azima"} age={17}/>
+          <Password isValid={true}/>
         </div>
     )
 }
