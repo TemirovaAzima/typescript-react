@@ -1,16 +1,38 @@
 import React from "react";
-import UserProvider from './context/UserContext.tsx'
-import UserProfile from './component/UserProfile.tsx'
-import UpdateUser from "./component/UpdateUser.tsx";
+import {LanguageProvider, useLanguageContext} from "./context/LanguageContext.tsx";
+import LanguageSwitcher from "./components/LanguageSwitcher.tsx";
+
+// Dictionary for translations
+const translations ={
+    en:{
+        greeting:"Welcome to our website!",
+        description: "This is a simple language switcher example using useContext.",
+    },
+    uz:{
+        greeting:"Veb-saytimizga xush kelibsiz! ",
+        description: "Bu useContext yordamida yaratilgan oddiy til almashtirgich.",
+    },
+};
+
+const Content =()=>{
+    const {language} = useLanguageContext();
+
+    return (
+        <div className="container">
+            <h1>{translations[language].greeting}</h1>
+            <p>{translations[language].description}</p>
+        </div>
+    );
+};
 
 const App: React.FC =()=>{
-
     return(
-       <UserProvider>
-           <UserProfile/>
-           <UpdateUser/>
-       </UserProvider>
-
-    )
-}
+        <LanguageProvider>
+            <div className="app">
+                <LanguageSwitcher/>
+                <Content/>
+            </div>
+        </LanguageProvider>
+    );
+};
 export default App;
