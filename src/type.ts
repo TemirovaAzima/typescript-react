@@ -1,5 +1,6 @@
- export type PersonProp={
-     name: string,
-     age: number,
-     isSongOut: boolean,
- }
+import {UserProp} from "./context/UserContext.tsx";
+
+export type UserContextProp={
+    user: UserProp
+    updateUser: (newName:string)=>void
+}
