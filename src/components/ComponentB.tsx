@@ -1,12 +1,11 @@
 import React from 'react'
-import {NameProp} from "../App.tsx";
 import ComponentC from "./ComponentC.tsx";
 
-const ComponentB: React.FC<NameProp>= ({name}) => {
+const ComponentB: React.FC= () => {
 
     return (
         <div>
-            <ComponentC name={name} />
+            <ComponentC/>
         </div>
     )
 }
