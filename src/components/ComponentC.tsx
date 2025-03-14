@@ -1,34 +1,21 @@
-import React from 'react'
-import {DataAge, DataName, DataPerson} from '../App.tsx'
+import React, {useContext} from 'react'
+import {DataName, DataAge, DataPerson} from '../App.tsx'
 
 const ComponentC: React.FC = () => {
+    const userName = useContext(DataName);
+    const userAge = useContext(DataAge);
+    const userPerson = useContext(DataPerson);
+
     return (
-        <DataName.Consumer>
-            {(name) => {
-                return (
-                    <DataAge.Consumer>
-                        {(age) => {
-                            return (
-                                <DataPerson.Consumer>
-                                    {(person) =>
-                                        person ? (
-                                            <div>
-                                                <h1>{name ?? "No name provided"}</h1>
-                                                <h1> {age ?? "No age provided"}</h1>
-                                                <h1>{person.name}- {person.age} - {person.isSongOut ? "Yes" : "No"}</h1>
-                                            </div>
-                                        ) : (
-                                            <h1>No person data</h1>
-                                        )
-                                    }
-                                </DataPerson.Consumer>
-                            )
-                        }
-                        }
-                    </DataAge.Consumer>
-                )
-            }}
-        </DataName.Consumer>
+        <div>
+            <h1>Name:{userName ?? "No name provided"}</h1>
+            <h1>Age:{userAge ?? "No age provided"}</h1>
+            {userPerson ? (
+                <h1>Name: {userPerson.name}. Age: {userPerson.age}. is Song out: {userPerson.isSongOut? "Yes" : "No"}</h1>
+            ) : (
+                <p>No person found </p>
+            )}
+        </div>
     )
 }
 export default ComponentC

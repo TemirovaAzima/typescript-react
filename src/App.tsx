@@ -4,7 +4,7 @@ import {PersonProp} from "./type.ts";
 
 export const DataName = createContext<string| undefined>(undefined);
 export const DataAge = createContext<number | undefined>(undefined);
-export const DataPerson = createContext<PersonProp| undefined>(undefined)
+export const DataPerson = createContext<PersonProp| undefined>(undefined);
 const App: React.FC =()=>{
     const name:string = "Azima"
     const age:number = 17
@@ -12,7 +12,8 @@ const App: React.FC =()=>{
         name: "Jennie",
         age: 27,
         isSongOut: true
-    }
+    };
+
     return(
             <DataName.Provider value={name}>
                 <DataAge.Provider value={age}>
