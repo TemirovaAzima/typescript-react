@@ -1,27 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react'
 
 const App: React.FC = () => {
-    const countRef = useRef<number>(0); // does nt trigger re-renders
-    const [stateCount, setStateCount] = useState<number>(0); // triggers re-renders
+    const [count,setCount] = useState<number>(0);
+    const prevCountRef = useRef<number|null>(null);
 
-    useEffect(() => {
-        console.log("Component re-rendered!"); // logs message every time the component re-renders
-    });
+    useEffect(()=>{ // useEffect runs after rendering and after render,useEffect updates value
+        prevCountRef.current = count; // stores previous value on every count update
+    },[count]);
 
-    const incrementState = () => {
-        setStateCount((prev:number) => prev + 1); // triggers re-render
-    };
-    const incrementRef = () => {
-        countRef.current++;
-        console.log("Ref count", countRef.current);//updates only in console
-    };
     return (
         <div>
-            {console.log("Rendering...")}
-            <p>State Count: {stateCount}</p>
-            <p>Ref Count (Ko‘rinmaydi): {countRef.current}</p>
-            <button onClick={incrementState}>Increase State</button>
-            <button onClick={incrementRef}>Increase Ref</button>
+            <p>Current Count: {count}</p>
+            <p>Previous Count: {prevCountRef.current !==null ? prevCountRef.current : "N/A"}</p>
+            <button onClick={()=>setCount(prev=>prev+1)}>Increase</button>
         </div>
     )
 }
