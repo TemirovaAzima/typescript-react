@@ -5,40 +5,29 @@ const App: React.FC = () => {
     const intervalRef = useRef<number | null>(null);// correct type for setInterval
     const [isRunning, setRunning] = useState<boolean>(false);
 
-    const startInterval = () => {
-        if (!isRunning) {
-            intervalRef.current = setInterval(() => {
-                setCount(prev => prev + 1)
-            }, 1000);
-            setRunning(true);
-        }
-    };
-
-    const stopInterval = () => {
-        if (intervalRef.current !== null) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-            setRunning(false);
-        }
-    };
-
-    const toggleInterval = () => {
-        if (isRunning) {
-            stopInterval();
-        } else {
-            startInterval();
-        }
-    };
-
-    // Cleanup interval when component unmount
     useEffect(() => {
-        return () => startInterval()
-    }, []);
+        if (isRunning) {
+            intervalRef.current = setInterval(() => {
+                setCount(prev => prev + 1);
+            }, 1000);
+        } else {
+            if (intervalRef.current !== null) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        }
+
+        return () => {
+            if (intervalRef.current !== null) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [isRunning]);
 
     return (
         <div>
             <h2>Count: {count}</h2>
-            <button onClick={toggleInterval}>
+            <button onClick={() => setRunning(prev => !prev)}>
                 {isRunning ? "Stop" : "Start"}
             </button>
         </div>
