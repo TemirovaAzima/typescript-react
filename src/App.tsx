@@ -1,10 +1,10 @@
 import React from 'react'
-import Quiz from "./components/Quiz.tsx";
+import {Profile}  from './components/Profile.tsx'
 
 const App:React.FC = () => {
     return (
         <div>
-          <Quiz/>
+          <Profile/>
         </div>
     )
 }
