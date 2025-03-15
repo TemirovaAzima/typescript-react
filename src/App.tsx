@@ -1,10 +1,10 @@
 import React from 'react'
-import {Profile}  from './components/Profile.tsx'
+import {ShoppingCart} from "./components/ShoppingCart.tsx";
 
 const App:React.FC = () => {
     return (
         <div>
-          <Profile/>
+         <ShoppingCart/>
         </div>
     )
 }
