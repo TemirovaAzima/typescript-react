@@ -1,16 +1,11 @@
-import React, {useId} from 'react'
-const items: string[] = ["Apple","Banana","Orange"];
-const App:React.FC = () => {
-    const idPrefix = useId(); // Generates a unique prefix
+import React, {useId, useState} from 'react'
+
+const App : React.FC= () => {
+    const stableId = useState<string>(useId())[0]; //Wrapping it inside useState() ensures the ID
+    // is generated only once and remains stable throughout the component's lifecycle.
+
     return (
-        <div>
-           <ul>
-               {items.map((item,index)=>{
-                   const id = `${idPrefix} -${index}`;
-                   return <li key={id} id={id}>{item}</li>
-               })}
-           </ul>
-        </div>
-    );
-};
+        <p>My stable Id: {stableId}</p>
+    )
+}
 export default App
