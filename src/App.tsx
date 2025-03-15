@@ -1,35 +1,27 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 
-const App: React.FC = () => {
-    const [count, setCount] = useState(0);
-    const intervalRef = useRef<number | null>(null);// correct type for setInterval
-    const [isRunning, setRunning] = useState<boolean>(false);
+const App:React.FC = () => {
+    const [message,setMessage]=useState<string>("Waiting...");
+    const timeoutRef = useRef<null|number>(null);
+    const startTimeout = ()=>{
+        setMessage("Waiting...");
+        timeoutRef.current = setTimeout(()=>{
+            setMessage("Timeout finished");
+        },2000);
+    };
 
-    useEffect(() => {
-        if (isRunning) {
-            intervalRef.current = setInterval(() => {
-                setCount(prev => prev + 1);
-            }, 1000);
-        } else {
-            if (intervalRef.current !== null) {
-                clearInterval(intervalRef.current);
-                intervalRef.current = null;
-            }
+    const cancelTimeout = ()=>{
+        if(timeoutRef.current !==null){
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+            setMessage("Timeout canceled")
         }
-
-        return () => {
-            if (intervalRef.current !== null) {
-                clearInterval(intervalRef.current);
-            }
-        };
-    }, [isRunning]);
-
+    }
     return (
         <div>
-            <h2>Count: {count}</h2>
-            <button onClick={() => setRunning(prev => !prev)}>
-                {isRunning ? "Stop" : "Start"}
-            </button>
+            <h2>{message}</h2>
+            <button onClick={startTimeout}>Start Timeout</button>
+            <button onClick={cancelTimeout}>Cancel Timeout</button>
         </div>
     )
 }
