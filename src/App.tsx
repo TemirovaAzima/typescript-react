@@ -1,19 +1,23 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 
 const App:React.FC = () => {
-    const inputRef = useRef<HTMLInputElement|null>(null);
-    const focusInput = ()=>{
-        // inputRef.current!.focus();
-        // inputRef.current!.value="hehe"
-        if(inputRef.current){
-            inputRef.current.focus();
-            inputRef.current.value="hehe"
-        }
-    }
+    const countRef = useRef<number>(0);
+    const [stateCount, setStateCount] = useState<number>(0);
+
+    const incrementState =():void=>{
+        setStateCount(stateCount+1)
+    };
+    const incrementRef = ():void=>{
+        countRef.current+=1;
+        console.log("ref count:", countRef.current);
+    };
+
     return (
         <div>
-            <input ref={inputRef} type="text" placeholder="Enter User Name"/>
-            <button onClick={focusInput}>focus input</button>
+           <p>{stateCount}</p>
+            <p>{countRef.current}</p>
+            <button onClick={incrementState}>Increase state</button>
+            <button onClick={incrementRef}>Increase useRef</button>
         </div>
     )
 }
