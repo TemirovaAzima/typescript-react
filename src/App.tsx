@@ -1,22 +1,31 @@
 import React, {useEffect, useState} from 'react'
 
-const App: React.FC = () => {
-    const [value, setValue] = useState<number>(0);
-    const [smth, setSmth] = useState<number>(1)
+type TodoType = {
+    id: number,
+    title: string,
+}
+export const App: React.FC = () => {
+    const [data, setData] = useState<TodoType[]>([]);
 
     useEffect(() => {
-        if (value > 3) {
-            console.log("UseEffect hook");
-            document.title = `Increment ${value} ${smth}`;
+
+        async function getData() {
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/todos")
+                const data: TodoType[] = await response.json()
+                if (data && data.length) setData(data)
+            } catch (error) {
+                console.error("Error fetching data")
+            }
         }
-    }, [value, smth]); // dependency array to prevent unnecessary re-renders
+        getData();
+    }, [])
 
     return (
         <div>
-            <h2>{value}</h2>
-            <h2>{smth}</h2>
-            <button onClick={() => setValue(value + 1)}>Increment</button>
-            <button onClick={() => setSmth(smth + 1)}>Increment</button>
+            {data.map((todo: TodoType) => (
+                <li key={todo.id}>{todo.title}</li>
+            ))}
         </div>
     );
 };
