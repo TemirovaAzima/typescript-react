@@ -1,57 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import React from "react";
 
-type TodoType = {
-    id: number;
-    title: string;
-};
-
-export const App: React.FC = () => {
-    const [data, setData] = useState<TodoType[]>([]);
-
-    useEffect(() => {
-        async function getData() {
-            try {
-                const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-                const result: TodoType[] = await response.json();
-                if (result && result.length) setData(result);
-            } catch (error) {
-                console.error("Error fetching data", error)
-            }
-        }
-
-        getData();
-    }, []);
-
-    const changeTitle = () => {
-        setData(data.map((todo: TodoType) => (
-                todo.id === 2 ? {...todo, title: "Slay girl"} : todo
-            ))
-        );
-    };
-
-    const deleteTitle = (id: number) => {
-        setData(data.filter((todo) => (
-            todo.id !== id
-        )));
+const Copy: React.FC = () => {
+    const copyRights = (event: React.ClipboardEvent<HTMLParagraphElement>) => {
+        event.preventDefault();
+        console.log("Text ko‘chirish mumkin emas");
     };
 
     return (
-        <div>
-            {data.length > 0 ? (
-                <ul>
-                    {data.map((todo: TodoType) => (
-                        <li key={todo.id}>
-                            {todo.title}
-                            <button onClick={() => deleteTitle(todo.id)}>Delete title</button>
-                        </li>
-
-                    ))}
-                </ul>
-            ) : (
-                <p> Loading...</p>
-            )}
-            <button onClick={changeTitle}>Change title</button>
-        </div>
+        <p onCopy={copyRights}>
+            Viris purus graeco omittam adolescens movet maximus oporteat viverra efficiantur instructior sententiae
+            posidonium appareat quam pertinax sonet suas maximus alienum penatibus numquam unum congue posidonium
+            molestiae urna consectetur salutatus quidam.
+        </p>
     );
 };
-export default App
+
+export const App: React.FC = () => {
+    return (
+        <section>
+            <Copy />
+        </section>
+    );
+};
+
+export default App;
