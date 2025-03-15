@@ -19,15 +19,21 @@ const initialState :QuizState={
 const quizReducer =(state:QuizState,action:QuizAction):QuizState =>{
     switch(action.type){
         case "ANSWER":
-            const nextQuestion = state.currentQuestion + 1;
-            return nextQuestion >= questions.length
-                ? {...state,finished: true} //React does not update state immediately when calling type: "ANSWER
-                : {      // instead, it schedules the update, which means that the score might not increment in time before the
-                         // final check {finished: true} is set.
-                    currentQuestion:nextQuestion,
-                    score: action.correct? state.score + 1 : state.score,
-                    finished:false
-                  };
+            // const nextQuestion = state.currentQuestion + 1;
+            // return nextQuestion >= questions.length
+            //     ? {...state,finished: true} //React does not update state immediately when calling type: "ANSWER
+            //     : {      // instead, it schedules the update, which means that the score might not increment in time before the
+            //              // final check {finished: true} is set.
+            //         currentQuestion:nextQuestion,
+            //         score: action.correct? state.score + 1 : state.score,
+            //         finished:false
+            //       };
+            const nextQuestion = state.currentQuestion +1
+            return{
+                currentQuestion: nextQuestion,
+                score: action.correct? state.score + 1 : state.score ,
+                finished : nextQuestion>= questions.length
+            }
         case "RESET":
             return initialState;
         default:
