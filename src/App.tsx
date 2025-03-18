@@ -1,11 +1,9 @@
-import React, {useId, useState} from 'react'
+import React from 'react'
+import UserList from "./components/UserList.tsx";
 
-const App : React.FC= () => {
-    const stableId = useState<string>(useId())[0]; //Wrapping it inside useState() ensures the ID
-    // is generated only once and remains stable throughout the component's lifecycle.
-
+const App :React.FC= () => {
     return (
-        <p>My stable Id: {stableId}</p>
+        <UserList/>
     )
 }
 export default App
